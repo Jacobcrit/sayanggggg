@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Untuk Kekasih Tercinta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(to bottom, #ffd6ec, #fff0f5);
+      overflow-x: hidden;
+      color: #d63384;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      margin: 30px 20px 10px;
+      font-size: 2.5em;
+    }
+    .decor {
+      position: absolute;
+      width: 80px;
+      z-index: 0;
+    }
+    .decor.kitty {
+      top: 40px;
+      right: 10px;
+    }
+    .poem {
+      background: #ffe0ef;
+      border-radius: 0 0 20px 20px;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 1.4em;
+      color: #c71585;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      min-height: 220px;
+    }
+    .i-love-you {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 2.5em;
+      color: #ff69b4;
+      cursor: pointer;
+      transition: transform 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .i-love-you:active {
+      transform: scale(0.95);
+    }
+    .i-love-you:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .heart {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-size: contain;
+      animation: fly 1.5s ease forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    @keyframes fly {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px auto 20px;
+      max-width: 90%;
+    }
+    .photo-wrapper {
+      position: relative;
+      display: inline-block;
+      transition: transform 0.3s ease;
+      cursor: zoom-in;
+    }
+    .photo-wrapper img:first-child {
+      display: block;
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .flower {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+    }
+    .zoomable.zoomed {
+      transform: scale(1.5);
+      z-index: 10;
+      position: relative;
+    }
+    .scrolling-text {
+      width: 100%;
+      margin-top: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      background: transparent;
+    }
+    .scrolling-text p {
+      display: inline-block;
+      font-size: 1.5em;
+      color: #ff69b4;
+      font-weight: bold;
+      animation: scroll-left 20s linear infinite;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .click-to-answer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+    }
+    .click-to-answer {
+      background-color: #ffb6c1;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 18px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: wiggle 3s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .click-to-answer:hover {
+      transform: scale(1.2);
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(3deg); }
+    }
+    .typing-container {
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 1.5em;
+      text-align: center;
+      margin-top: 30px;
+      color: #ff1493;
+      min-height: 60px;
+    }
+    .cursor {
+      display: inline-block;
+      animation: blink 0.7s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" autoplay loop>
+    <source src="love-story.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="click-sound">
+    <source src="Sound Effect Darling.mp3" type="audio/mpeg">
+  </audio>
+  <div class="scrolling-text">
+    <p>🌸 Nana Ku Sayang 🌸 Nana Ku Sayang 🌸 Nana Ku Sayang 🌸</p>
+  </div>
+  <img src="https://pngimg.com/uploads/hello_kitty/hello_kitty_PNG44.png" class="decor kitty" />
+  <h1>Untuk Kekasih Tercinta 💞</h1>
+  <div class="typing-container">
+    <span id="typed-text"></span><span class="cursor">|</span>
+  </div>
+  <div class="poem" id="poem"></div>
+  <div class="i-love-you" onclick="showLove(event); playClickSound();">💗 I Love You 💗</div>
+  <div style="text-align:center; margin-top:20px;">
+    <h2 style="color:#ff1493; font-family: 'Dancing Script', cursive; font-size:2em;">📸 Photo of My Lover 📸</h2>
+  </div>
+  <div class="gallery">
+    <div class="photo-wrapper zoomable"><img src="ayang1.jpg" /><img class="flower" src="d1c58c07cdfe330d77e4f55b717a3393.jpg" /></div>
+    <div class="photo-wrapper zoomable"><img src="ayang2.jpg" /><img class="flower" src="d1c58c07cdfe330d77e4f55b717a3393.jpg" /></div>
+    <div class="photo-wrapper zoomable"><img src="ayang3.jpg" /><img class="flower" src="d1c58c07cdfe330d77e4f55b717a3393.jpg" /></div>
+    <div class="photo-wrapper zoomable"><img src="ayang4.jpg" /><img class="flower" src="d1c58c07cdfe330d77e4f55b717a3393.jpg" /></div>
+    <div class="photo-wrapper zoomable"><img src="ayang5.jpg" /><img class="flower" src="d1c58c07cdfe330d77e4f55b717a3393.jpg" /></div>
+  </div>
+  <div class="click-to-answer-wrapper">
+    <a class="click-to-answer" href="https://wa.link/r5bz9s" target="_blank">💬</a>
+    <!-- Tombol Play Lagu Cinta -->
+    <a id="playButton" onclick="playMusic()" style="
+      background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1em;
+      font-family: 'Comic Sans MS', cursive;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      animation: pop 1.5s infinite;
+      text-align: center;
+      text-decoration: none;
+    ">💕 Play Lagu Cinta 💕</a>
+    
+    <a class="click-to-answer" href="https://wa.link/r5bz9s" target="_blank">💬</a>
+  </div>
+  <script>
+    const messages = [
+      "Hi ayangg 😙",
+      "Aku mau bilang sesuatu nih...",
+      "Tapi jangan senyum-senyum sendiri ya 🥺👉👈",
+      "Aku sayang kamu 💖"
+    ];
+    let msgIndex = 0;
+    let charIndex = 0;
+    const speed = 50;
+    const typedText = document.getElementById("typed-text");
+
+    function typeMessage(callback) {
+      if (msgIndex < messages.length) {
+        if (charIndex < messages[msgIndex].length) {
+          typedText.textContent += messages[msgIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(() => typeMessage(callback), speed);
+        } else {
+          msgIndex++;
+          charIndex = 0;
+          setTimeout(() => {
+            typedText.textContent = "";
+            typeMessage(callback);
+          }, 1500);
+        }
+      } else {
+        if (callback) callback();
+      }
+    }
+
+    function typePoemLine() {
+      const poemLines = [
+        "Di setiap hembusan napasmu,",
+        "Ada cinta yang tak pernah habis.",
+        "Dalam senyum manismu aku temukan rumah,",
+        "Tempat hatiku pulang dan bernaung.",
+        "",
+        "Kau bukan hanya kekasihku,",
+        "Kau adalah bahagiaku yang tak tergantikan.",
+        "Selamanya, aku mencintaimu. 💕"
+      ];
+      let currentLine = 0;
+      function typeNextLine() {
+        if (currentLine < poemLines.length) {
+          const line = document.createElement("div");
+          line.textContent = "";
+          document.getElementById("poem").appendChild(line);
+          let charIndex = 0;
+          function typeChar() {
+            if (charIndex < poemLines[currentLine].length) {
+              line.textContent += poemLines[currentLine].charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, 30);
+            } else {
+              currentLine++;
+              setTimeout(typeNextLine, 500);
+            }
+          }
+          typeChar();
+        }
+      }
+      typeNextLine();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typeMessage(typePoemLine);
+    });
+
+    function playClickSound() {
+      const clickSound = document.getElementById("click-sound");
+      if (clickSound) clickSound.play();
+    }
+
+    function showLove(event) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${event.clientX}px`;
+      heart.style.top = `${event.clientY}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1500);
+    }
+
+    document.querySelectorAll('.zoomable').forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('zoomed');
+      });
+    });
+  </script>
+
+  <audio id="bgm" loop>
+    <source src="https://www.mboxdrive.com/Taylor-Swift-Love-Story.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function playMusic() {
+      const bgm = document.getElementById("bgm");
+      bgm.volume = 1;
+      bgm.play().then(() => {
+        document.getElementById("playButton").style.display = "none";
+      }).catch((e) => {
+        alert("Browser kontol autoplay block");
+        console.warn(e);
+      });
+    }
+  </script>
+</body>
+</html>
+
